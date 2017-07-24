@@ -15,3 +15,9 @@ which vim
 vim --version
 
 sudo apt-get install gtk2-engines-pixbuf
+# install apt-vim
+curl -sL https://raw.githubusercontent.com/egalpin/apt-vim/master/install.sh | sh
+# install pathogen.vim
+git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+
+echo "restart the terminal and run apt-vim install -y https://github.com/scrooloose/nerdtree.git" 
