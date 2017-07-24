@@ -77,5 +77,14 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" include -X for all vim instances for precision being so slow
+"set clipboard=exclude:.*
+
+" NERDTree commands
+nnoremap <Leader>f :NERDTreeToggle<Enter>
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+let NERDTreeQuitOnOpen = 1
+
 execute pathogen#infect()
 call pathogen#helptags()
+
