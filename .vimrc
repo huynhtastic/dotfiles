@@ -49,7 +49,7 @@ syntax on
 
 " Show line numbers and length
 set number  " show line numbers
-set tw=79   " width of doc (used by gd):
+set tw=80   " width of doc (used by gd):
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
 set colorcolumn=80
@@ -84,6 +84,15 @@ set noswapfile
 nnoremap <Leader>f :NERDTreeToggle<Enter>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen = 1
+
+" Set all yanks to write into system clipboard
+" https://stackoverflow.com/a/11489440/5290393
+set clipboard=unnamedplus
+
+" Highlights all characters past 80 in a charming red background with white text
+" https://stackoverflow.com/a/235970/5290393
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+o/
 
 execute pathogen#infect()
 call pathogen#helptags()
