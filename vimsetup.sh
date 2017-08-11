@@ -21,6 +21,9 @@ curl -sL https://raw.githubusercontent.com/egalpin/apt-vim/master/install.sh | s
 git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
 # install vim-easymotion
 git clone https://github.com/easymotion/vim-easymotion ~/.vim/bundle/vim-easymotion
+# install fzf   
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 
 echo "restart the terminal and run apt-vim install -y https://github.com/scrooloose/nerdtree.git" 
 
