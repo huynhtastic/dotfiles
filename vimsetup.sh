@@ -24,6 +24,8 @@ git clone https://github.com/easymotion/vim-easymotion ~/.vim/bundle/vim-easymot
 # install fzf   
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
+# install solidity syntax for VIM
+git clone https://github.com/tomlion/vim-solidity.git ~/.vim/bundle/vim-solidity
 
 echo "restart the terminal and run apt-vim install -y https://github.com/scrooloose/nerdtree.git" 
 
