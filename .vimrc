@@ -115,3 +115,5 @@ map <Leader>k <Plug>(easymotion-k)
 execute pathogen#infect()
 call pathogen#helptags()
 
+" 2 space tabbing for HTML
+autocmd Filetype html setlocal ts=2 sts=2 sw=2
