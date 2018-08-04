@@ -2,12 +2,12 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/huynhtastic/.oh-my-zsh"
+  export ZSH="/home/richardhu/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="bullet-train"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -48,7 +48,10 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
@@ -92,28 +95,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/huynhtastic/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/home/huynhtastic/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/huynhtastic/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/huynhtastic/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-ZSH_THEME="materialshell"
-
-# Function aliasing
-# New file that will hold function aliases like toc and sadd.
-if [ -f ~/.functions ]; then
-. ~/.functions
-fi
-
-# Function aliasing
-# New file that will hold function aliases like toc and sadd.
-if [ -f ~/.aliases ]; then
-. ~/.aliases
-fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/huynhtastic/.sdkman"
-[[ -s "/home/huynhtastic/.sdkman/bin/sdkman-init.sh" ]] && source "/home/huynhtastic/.sdkman/bin/sdkman-init.sh"

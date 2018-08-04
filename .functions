@@ -1,85 +1,8 @@
 #!/bin/bash
 
-pp='/home/richardhu/dev/gh-otto/src:/home/richardhu/dev/gh-otto/lib:/home/richardhu/condaa/envs/otto/bin'
-srcbin='/home/richardhu/dev/gh-otto/src/bin'
-conpy='/home/richardhu/condaa/envs/otto/bin/python2.7'
 
 sadd () {
     eval `ssh-agent`
     ssh-add
 }
 
-ssd () {
- connect $1 ssh
-}
-
-ssdu () {
- connect $1 ssh --su
-}
-
-com () {
- connect $1 serial
-}
-
-comu () {
- connect $1 serial --su
-}
-
-connect () {
-    if [ -z "$1" ]
-    then
-        echo "\nPlease input a device name."
-        return
-    fi
-
-    PYTHONPATH=$pp $conpy "$srcbin"/tool/access.py --box $1 --shell $2 --action login $3
-}
-
-easymoney () {
-    otto="otto"
-    base_state="--base_state none"
-    user=$USER
-    pc_owner=""
-    pcA=""
-    pcB=""
-
-    while getopts ":sbu:p:" opt
-    do
-        case $opt in
-            b)
-                base_state=""
-                ;;
-            p)
-                pc_owner="--pc_owner $OPTARG"
-                ;;
-            s)
-                otto="stotto"
-                ;;
-            u)
-                user=$OPTARG
-                ;;
-            :)
-                echo "Option -$OPTARG reuires an argument." >&2
-                ;;
-        esac
-    done
-
-    shift $(expr $OPTIND - 1 )
-    ips_name=$1
-    if [ ! -z "$2" ] && [ ! -z "$3" ]; then
-        pcA="--pcA $2"
-        pcB="--pcB $3"
-    fi
-    cmd="OTTO=$otto USER=$user PYTHONPATH=$pp $conpy "$srcbin"/runotto.py \
-        tests.ips.IpsManualRunCase --board any --model any --build any \
-        --ips_name $ips_name $pcA $pcB $base_state $pc_owner"
-    echo $cmd
-    eval $cmd
-}
-
-confsms () {
-  export ANT_HOME="/home/richardhu/dev/tpt-sms/vendor/mgmt/tools/ant/apache-ant-1.9.6"
-  export JAVA_HOME="/home/richardhu/dev/tpt-sms/vendor/mgmt/tools/jdk/jdk-8u141-linux-x86_64"
-  export PATH="${JAVA_HOME}/bin:${ANT_HOME}/bin:${PATH}"
-  chmod +x "${ANT_HOME}/bin/complete-ant-cmd.pl"
-}
