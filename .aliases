@@ -1,0 +1,5 @@
+alias ads='/bin/bash /home/huynhtastic/android-studio/bin/studio.sh'
+alias cpd='cp app-debug.apk ~/Downloads/'
+alias work='sadd; tmux'
+alias sai='sudo apt install'
+alias ibuy="cd ~/dev/instabuy"

@@ -1,4 +1,8 @@
+#!/bin/bash
+
+
 sadd () {
     eval `ssh-agent`
     ssh-add
 }
+

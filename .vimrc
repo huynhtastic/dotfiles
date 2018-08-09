@@ -1,120 +1,191 @@
-" Allow automatic sourcing of .vimrc after write-quit
-autocmd! bufwritepost .vimrc source %
+" Settings {{{
+" No's {{{{
+set nocompatible " Don't try to be vi compatible"
+set nobackup " No backup files
+set nowritebackup " No write backup
+set noswapfile " No swap file
+" }}}}
 
-" Allow mouse usage
-" set mouse=a
-" Backspace
-set bs=2
+" Plugin configuration {{{
+filetype off " force plugins to load correctly when it is turned back on
+" execute pathogen#infect()
+call plug#begin('~/.vim/plugged')
 
-" Rebind <Leader> key
-let mapleader = ","
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-python/python-syntax'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'sheerun/vim-polyglot'
 
-" Quicksave command
-noremap <C-Z> :update<CR>
-vnoremap <C-Z> <C-C>:update<CR>
-inoremap <C-Z> <C-O>:update<CR>
+call plug#end()
 
-" Quick quit command
-noremap <Leader>e :quit<CR>  " Quit current window
-noremap <Leader>E : qa!<CR>  " Quit all windows
+syntax on                 " Turn on syntax highlighting 
+filetype plugin indent on " For plugins to load correctly
 
-" easier moving between tabs
-map <Leader>n <esc>:tabprevious<CR>
-map <Leader>m <esc>:tabnext<CR>
+" NERDTree
+map <leader>' :NERDTreeToggle<cr>
 
-" Bind Ctrl+<movement> keys to move around the windows
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
+" Lightline config
 
-" Map sort function to a key
-vnoremap <Leader>s :sort<CR>
+if !has('gui_running')
+  set t_Co=256
+endif
 
-" Move code blocks more easily
-vnoremap < <gv  "better indentation
-vnoremap > >gv  "better indentation
+let g:lightline = {
+      \ 'colorscheme': 'deus',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
 
-" Show whitespace
-" MUST be inserted BEFORE the colorscheme command
-"autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-"au InsertLeave * match ExtraWhitespace /\s\+%/
+" Python Syntax
+let g:python_highlight_all = 1
+let g:python_highlight_builtins = 1
 
-" leave space for whitespace stuff
+" }}}
 
-" Enable syntax highlighting
-filetype off
-filetype plugin indent on
-syntax on
+set modelines=0  " Security
+set number       " Show line numbers
+set ruler        " Show file stats
+set visualbell   " Blink cursor on error instead of beeping (grr)
+set encoding=utf-8
+set autoread     " Autoload files that have changed outside of vim
+set hidden       " Allow hidden buffers
+set ttyfast      " Rendering
+set laststatus=2 " Status bar
+set shortmess+=I " Don't show intro
+set wildmenu     " autocomplete for cmd menu (e.g. :e ~/path/to/file)
+set lazyredraw   " redraw only when we need to 
+set showmatch    " highlight matching [{()}] 
+set history=100  " Command history
+set noshowmode   " no more --insert--
+set showcmd      " Show incomplete commands
 
-" Show line numbers and length
-set number  " show line numbers
-set tw=80   " width of doc (used by gd):
-set nowrap  " don't automatically wrap on load
-set fo-=t   " don't automatically wrap text when typing
-set colorcolumn=80
-highlight ColorColumn ctermbg=233
 
-" Easier formatting of paragraphs
-vmap Q gq
-nmap Q gqap
+" Better splits (new windows appear below and to the right)
+set splitbelow
+set splitright
 
-" Real programmers don't use tabs; spaces only
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set shiftround
+" Use system clipboard
+" http://stackoverflow.com/questions/8134647/copy-and-paste-in-vim-via-keyboard-between-different-mac-terminals
+set clipboard+=unnamed
+" Whitespace {{{{
+set wrap
+"set textwidth=79
+set formatoptions=tcqrn1
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
+set noshiftround
+" }}}}
 
-" Make searh case insensitive
-set hlsearch 
-set incsearch
-set ignorecase
-set smartcase
+" Cursor motion {{{{
+set scrolloff=3
+set backspace=indent,eol,start
+set matchpairs+=<:> " use % to jump between pairs
+runtime! macros/matchit.vim
+" }}}}
 
-" Disable backup/swp files for file system watchers
-set nobackup
-set nowritebackup
-set noswapfile
+" Always highlight column 80 so it's easier to see where
+" cutoff appears on longer screens
+autocmd BufWinEnter * highlight ColorColumn ctermbg=235 guibg=#2c2d27
+let &colorcolumn="80,120"
 
-" include -X for all vim instances for precision being so slow
-"set clipboard=exclude:.*
+" Move up/down editor lines
+nnoremap j gj
+nnoremap k gk
 
-" NERDTree commands
-nnoremap <Leader>f :NERDTreeToggle<Enter>
-nnoremap <silent> <Leader>v :NERDTreeFind<CR>
-let NERDTreeQuitOnOpen = 1
+" Close all folds when opening a new buffer
+autocmd BufRead * setlocal foldmethod=marker
+autocmd BufRead * normal zM
 
-" Set all yanks to write into system clipboard
-" https://stackoverflow.com/a/11489440/5290393
-set clipboard=unnamedplus
+" Last line
+set showcmd
 
-" Highlights all characters past 80 in a charming red background with white text
-" https://stackoverflow.com/a/235970/5290393
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+o/
+" Searching {{{{
+nnoremap / /\v
+vnoremap / /\v
+set hlsearch " highlight search matches
+set incsearch " search as you type
+set ignorecase " don't need \c escape chars
+set smartcase " ignore case?
+set showmatch
+map <leader><space> :let @/=''<cr> " clear search
+" }}}}
 
-" Minimal easymotion changes from repo
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
+" Textmate holdouts
 
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-" `s{char}{label}`
-nmap s <Plug>(easymotion-overwin-f)
-" or
-" `s{char}{char}{label}`
-" Need one more keystroke, but on average, it may be more comfortable.
-nmap s <Plug>(easymotion-overwin-f2)
 
-" Turn on case insensitive feature
-let g:EasyMotion_smartcase = 1
+" Visualize tabs and newlines
+set listchars=tab:▸\ ,eol:¬
+" Uncomment this to enable by default:
+" set list " To enable by default
+" Or use your leader key + l to toggle on/off
+map <leader>l :set list!<CR> " Toggle tabs and EOL
 
-" JK motions: Line motions
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+" Color scheme (terminal)
+set background=dark
+set t_Co=256
+"let g:solarized_termcolors=256
+"let g:solarized_termtrans=1
+" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
+" in ~/.vim/colors/ and uncomment:
+" colorscheme solarized
+" }}}
 
-execute pathogen#infect()
-call pathogen#helptags()
+" Mappings {{{
+let mapleader = ","
+" Formatting
+map <leader>q gqip
 
-" 2 space tabbing for HTML
-autocmd Filetype html setlocal ts=2 sts=2 sw=2
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+" Remap help key.
+inoremap <F1> <ESC>:set invfullscreen<CR>a
+nnoremap <F1> :set invfullscreen<CR>
+vnoremap <F1> :set invfullscreen<CR>
+
+" remap ctrl + [hjkl] to switch split buffers
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Buffers
+map <leader>yt :ls<cr>
+
+" Buffers (runs the delete buffer command on all open buffers)
+map <leader>yd :bufdo bd<cr>
+
+" Make handling vertical/linear Vim windows easier
+map <leader>w- <C-W>- " decrement height
+map <leader>w+ <C-W>+ " increment height
+map <leader>w] <C-W>_ " maximize height
+map <leader>w[ <C-W>= " equalize all windows
+
+" Make splitting Vim windows easier
+map <leader>; <C-W>s
+map <leader>` <C-W>v
+
+" map fzf.vim to leader+f
+map <Leader> :Files<cr>
+
+" Tmux style window selection
+map <Leader>ws :ChooseWin<cr>
+
+" Switch between vim tabs
+map <leader>1 1gt
+map <leader>2 2gt
+map <leader>3 3gt
+map <leader>4 4gt
+map <leader>5 5gt
+
+" Create new tabs
+map <leader>t :tabnew<CR>
+map <leader>T :tabe  
+
+" }}}
