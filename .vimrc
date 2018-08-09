@@ -16,6 +16,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-python/python-syntax'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
