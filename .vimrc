@@ -16,6 +16,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-python/python-syntax'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
@@ -27,8 +28,12 @@ map <leader>' :NERDTreeToggle<cr>
 
 " Lightline config
 
+if !has('gui_running')
+  set t_Co=256
+endif
+
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'deus',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -53,9 +58,7 @@ set autoread     " Autoload files that have changed outside of vim
 set hidden       " Allow hidden buffers
 set ttyfast      " Rendering
 set laststatus=2 " Status bar
-set nowrap       " Turn word wrap off
 set shortmess+=I " Don't show intro
-set cursorline   " Highlight the current line
 set wildmenu     " autocomplete for cmd menu (e.g. :e ~/path/to/file)
 set lazyredraw   " redraw only when we need to 
 set showmatch    " highlight matching [{()}] 
@@ -73,7 +76,7 @@ set splitright
 set clipboard+=unnamed
 " Whitespace {{{{
 set wrap
-set textwidth=79
+"set textwidth=79
 set formatoptions=tcqrn1
 set tabstop=2
 set shiftwidth=2
@@ -129,8 +132,8 @@ map <leader>l :set list!<CR> " Toggle tabs and EOL
 " Color scheme (terminal)
 set background=dark
 set t_Co=256
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
+"let g:solarized_termcolors=256
+"let g:solarized_termtrans=1
 " put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
 " in ~/.vim/colors/ and uncomment:
 " colorscheme solarized
@@ -173,4 +176,16 @@ map <Leader> :Files<cr>
 
 " Tmux style window selection
 map <Leader>ws :ChooseWin<cr>
+
+" Switch between vim tabs
+map <leader>1 1gt
+map <leader>2 2gt
+map <leader>3 3gt
+map <leader>4 4gt
+map <leader>5 5gt
+
+" Create new tabs
+map <leader>t :tabnew<CR>
+map <leader>T :tabe  
+
 " }}}
