@@ -34,6 +34,7 @@ endif
 
 let g:lightline = {
       \ 'colorscheme': 'one',
+      \ 'colorscheme': 'deus',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
