@@ -3,3 +3,4 @@ alias cpd='cp app-debug.apk ~/Downloads/'
 alias work='sadd; tmux'
 alias sai='sudo apt install'
 alias ibuy="cd ~/dev/instabuy"
+alias sysclip="xclip -sel clip"
