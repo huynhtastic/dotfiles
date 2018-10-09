@@ -4,3 +4,10 @@ alias work='sadd; tmux'
 alias sai='sudo apt install'
 alias ibuy="cd ~/dev/instabuy"
 alias sysclip="xclip -sel clip"
+alias ana="source ~/anaconda3/bin/activate"
+alias resetjava="export JAVA_HOME=\"/usr/lib/jvm/java-8-openjdk-amd64\""
+alias jn="jupyter-notebook --no-browser"
+alias mid="/bin/bash ~/mid.sh"
+alias rlz="source ~/.zshrc"
+alias yec="ssh -i itegrp-key.pem ec2-user@18.223.134.8"
+alias fall="cd /home/huynhtastic/dev/school/fall_2018"

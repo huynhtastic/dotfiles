@@ -6,22 +6,35 @@ set nowritebackup " No write backup
 set noswapfile " No swap file
 " }}}}
 
+
 " Plugin configuration {{{
 filetype off " force plugins to load correctly when it is turned back on
 " execute pathogen#infect()
 call plug#begin('~/.vim/plugged')
 
+Plug 'sheerun/vim-polyglot'
+Plug 'pangloss/vim-javascript'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-python/python-syntax'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
 syntax on                 " Turn on syntax highlighting 
 filetype plugin indent on " For plugins to load correctly
+
+" Whitespace {{{{
+set wrap
+"set textwidth=79
+"set formatoptions=tcqrn1
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set noshiftround
+" }}}}
 
 " NERDTree
 map <leader>' :NERDTreeToggle<cr>
@@ -74,16 +87,6 @@ set splitright
 " Use system clipboard
 " http://stackoverflow.com/questions/8134647/copy-and-paste-in-vim-via-keyboard-between-different-mac-terminals
 set clipboard+=unnamed
-" Whitespace {{{{
-set wrap
-"set textwidth=79
-set formatoptions=tcqrn1
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set noshiftround
-" }}}}
 
 " Cursor motion {{{{
 set scrolloff=3
@@ -140,6 +143,7 @@ set t_Co=256
 " }}}
 
 " Language specific settings
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
 
 " Mappings {{{
 let mapleader = ","
@@ -189,5 +193,8 @@ map <leader>5 5gt
 " Create new tabs
 map <leader>t :tabnew<CR>
 map <leader>T :tabe  
+
+map <leader>z ggVG$"+y<cr>
+
 
 " }}}

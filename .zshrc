@@ -113,6 +113,22 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export PATH=${PATH}:/home/huynhtastic/webdrivers
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/huynhtastic/.sdkman"
 [[ -s "/home/huynhtastic/.sdkman/bin/sdkman-init.sh" ]] && source "/home/huynhtastic/.sdkman/bin/sdkman-init.sh"
+
+function snotebook () 
+{
+#Spark path (based on your computer)
+SPARK_PATH=~/spark-2.0.0-bin-hadoop2.7
+
+export PYSPARK_DRIVER_PYTHON="jupyter"
+export PYSPARK_DRIVER_PYTHON_OPTS="notebook"
+
+# For python 3 users, you have to add the line below or you will get an error 
+#export PYSPARK_PYTHON=python3
+
+$SPARK_PATH/bin/pyspark --master local[2]
+}
