@@ -144,6 +144,7 @@ set t_Co=256
 
 " Language specific settings
 autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
+autocmd Filetype python setlocal ts=4 sw=4 sts=0 expandtab
 
 " Mappings {{{
 let mapleader = ","
