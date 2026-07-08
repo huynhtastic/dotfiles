@@ -36,7 +36,6 @@
     onActivation.autoUpdate = true;
     onActivation.extraFlags = [ "--force" ];
     brews = [
-      "gcloud-cli"
       "gh"
       "glab"
       "neovim"
@@ -45,6 +44,7 @@
     ];
     casks = [
       "battery"
+      "gcloud-cli"
       "ghostty"
       "hiddenbar"
       "linearmouse"
