@@ -22,23 +22,21 @@ in
   fonts.fontconfig.enable = true;
   home.sessionVariables.EDITOR = "nvim";
 
-  # programs.zsh = {
-  #   enable = true;
-  #   autosuggestion.enable = true;      # ghost text from history
-  #   syntaxHighlighting.enable = true;  # commands turn green when valid
-  #   initContent = ''
-  #     bindkey '^f' autosuggest-accept
-  #   '';
-  #   shellAliases = {
-  #     ".." = "cd ..";
-  #     add = "git add .";
-  #     push = "git push";
-  #     pull = "git pull";
-  #     m = "git switch main";
-  #     cc = "claude --dangerously-skip-permissions";
-  #     co = "codex --full-auto";
-  #   };
-  # };
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;      # ghost text from history
+    syntaxHighlighting.enable = true;  # commands turn green when valid
+    initContent = ''
+      bindkey '^f' autosuggest-accept
+    '';
+    shellAliases = {
+      ".." = "cd ..";
+      #add = "git add .";
+      #push = "git push";
+      #pull = "git pull";
+      #m = "git switch main";
+    };
+  };
   #
   # programs.starship = {
   #   enable = true;

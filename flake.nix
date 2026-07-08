@@ -21,7 +21,7 @@
       user = "richardhuynh";
     in
     {
-      darwinConfigurations."mac" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations.mac = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit user; };
         modules = [
           ./configuration.nix
