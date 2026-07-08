@@ -35,8 +35,18 @@
     #onActivation.cleanup = "check";
     onActivation.autoUpdate = true;
     onActivation.extraFlags = [ "--force" ];
+    brews = [
+      "gh"
+      "glab"
+      "neovim"
+      "opencode"
+    ];
     casks = [
+      "battery"
       "ghostty"
+      "hiddenbar"
+      "linearmouse"
+      "raycast"
     ];
   };
 }
