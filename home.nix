@@ -78,7 +78,7 @@ in
       ];
     };
   };
-  
+
   programs.starship = {
     enable = true;
     settings = {

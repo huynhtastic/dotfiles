@@ -38,6 +38,7 @@
     brews = [
       "gh"
       "glab"
+      "herdr"
       "neovim"
       "opencode"
       "pnpm"
