@@ -13,3 +13,4 @@
 2026-07-09T00:32:29.432771Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=81892
 2026-07-09T00:32:29.689941Z  INFO herdr::server::headless: client connected client_id=2 cols=177 rows=84 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
 2026-07-09T00:32:34.436503Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/richardhuynh/.config/herdr/session.json workspaces=1
+2026-07-09T00:39:21.312661Z  INFO herdr::app::actions: copied selection to clipboard
