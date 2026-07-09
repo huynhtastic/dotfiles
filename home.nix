@@ -37,8 +37,14 @@ in
       # For Android Development
       export PATH="$PATH:/Users/richardhuynh/Library/Android/sdk/platform-tools"
 
+      # Flutter
+      PATH=$PATH:/Users/richardhuynh/dev/flutter/bin
+
       # For Flutter/Dart packages
       export PATH="$PATH:$HOME/.pub-cache/bin"
+
+      # Gems
+      PATH=$PATH:$HOME/.gem/bin
 
       # For LM Studio
       export PATH="$PATH:/Users/richardhuynh/.lmstudio/bin"
