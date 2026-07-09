@@ -34,6 +34,8 @@ in
       bindkey '^f' autosuggest-accept
       ENABLE_CORRECTION="true"
 
+      export CHROME_EXECUTABLE="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
+
       # For Android Development
       export PATH="$PATH:/Users/richardhuynh/Library/Android/sdk/platform-tools"
 
