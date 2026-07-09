@@ -15,7 +15,6 @@ in
     fzf       # fuzzy finder
     jq        # json on the command line
     lazygit
-    neovim
     # the font everything renders in
     nerd-fonts.hack
   ];
@@ -28,16 +27,58 @@ in
     syntaxHighlighting.enable = true;  # commands turn green when valid
     initContent = ''
       bindkey '^f' autosuggest-accept
+      ENABLE_CORRECTION="true"
+
+      # For Android Development
+      export PATH="$PATH:/Users/richardhuynh/Library/Android/sdk/platform-tools"
+
+      # For Flutter/Dart packages
+      export PATH="$PATH:$HOME/.pub-cache/bin"
+
+      # For LM Studio
+      export PATH="$PATH:/Users/richardhuynh/.lmstudio/bin"
+
+      # AGY
+      export PATH="/Users/richardhuynh/.antigravity/antigravity/bin:$PATH"
+      # AGY IDE
+      export PATH="/Users/richardhuynh/.antigravity-ide/antigravity-ide/bin:$PATH"
+      # AGY CLI
+      export PATH="/Users/richardhuynh/.local/bin:$PATH"
+
+      # pnpm Path Setup
+      case ":$PATH:" in
+        *":$PNPM_HOME/bin:"*) ;;
+        *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+      esac
+
+      # Google Cloud SDK Scripts
+      if [ -f '/Users/richardhuynh/Downloads/google-cloud-sdk/path.zsh.inc' ]; then 
+        source '/Users/richardhuynh/Downloads/google-cloud-sdk/path.zsh.inc'
+      fi
+
+      if [ -f '/Users/richardhuynh/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then 
+        source '/Users/richardhuynh/Downloads/google-cloud-sdk/completion.zsh.inc'
+      fi
+
+      # Dart CLI Completion Script
+      if [[ -f /Users/richardhuynh/.dart-cli-completion/zsh-config.zsh ]]; then
+        source /Users/richardhuynh/.dart-cli-completion/zsh-config.zsh
+      fi
     '';
     shellAliases = {
+      "nv" = "nvim";
       ".." = "cd ..";
-      #add = "git add .";
-      #push = "git push";
-      #pull = "git pull";
-      #m = "git switch main";
+    };
+
+    oh-my-zsh = {
+      enable = true;
+      theme = "robbyrussell";
+      plugins = [
+        "git"
+      ];
     };
   };
-  #
+  
   programs.starship = {
     enable = true;
     settings = {
@@ -50,7 +91,7 @@ in
       cmd_duration.format = "[$duration]($style) ";
     };
   };
-  #
+
   # Edit-in-place: the real file stays in my repo, ~/.config just points at it.
   home.file.".config/ghostty".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/ghostty";
@@ -58,13 +99,7 @@ in
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/nvim";
   home.file.".config/herdr".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/herdr";
-  home.file.".claude/settings.json".source =
-    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.claude/settings.json";
 
-  home.file.".claude/CLAUDE.md".source =
-    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
-  home.file.".codex/AGENTS.md".source =
-    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
   home.file.".config/opencode/AGENTS.md".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
 }
