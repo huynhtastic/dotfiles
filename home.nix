@@ -47,7 +47,7 @@ in
       PATH=$PATH:$HOME/.gem/bin
 
       # Go
-      PATH="$PATH:$HOME/go/bin:/usr/local/go"
+      PATH="$PATH:$HOME/go/bin:/usr/local/go/bin"
 
       # For LM Studio
       export PATH="$PATH:/Users/richardhuynh/.lmstudio/bin"
