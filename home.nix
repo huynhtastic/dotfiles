@@ -37,6 +37,7 @@ in
       export CHROME_EXECUTABLE="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 
       # For Android Development
+      export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
       export PATH="$PATH:/Users/richardhuynh/Library/Android/sdk/platform-tools"
 
       # Flutter
@@ -106,6 +107,11 @@ in
       };
       cmd_duration.format = "[$duration]($style) ";
     };
+  };
+
+  programs.mise = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   # Edit-in-place: the real file stays in my repo, ~/.config just points at it.
