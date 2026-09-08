@@ -26,6 +26,14 @@ in
     enableZshIntegration = true;
   };
 
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+    options = [
+      "--cmd cd"
+    ];
+  };
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;      # ghost text from history
