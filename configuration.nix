@@ -17,7 +17,6 @@
     AppleInterfaceStyle = "Dark";
     KeyRepeat = 2;          # fast key repeat
     InitialKeyRepeat = 15;  # short delay before repeat
-    _HIHideMenuBar = false;  # auto-hide the menu bar
     AppleShowAllExtensions = true;
   };
   dock.autohide = true;
@@ -43,8 +42,10 @@
       "neovim"
       "opencode"
       "pnpm"
+      "zoxide"
     ];
     casks = [
+      "automic-vault"
       "battery"
       "gcloud-cli"
       "ghostty"
