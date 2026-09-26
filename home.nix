@@ -89,6 +89,8 @@ in
       if [[ -f /Users/richardhuynh/.dart-cli-completion/zsh-config.zsh ]]; then
         source /Users/richardhuynh/.dart-cli-completion/zsh-config.zsh
       fi
+
+      export PATH="$(brew --prefix libpq)/bin:$PATH"
     '';
     shellAliases = {
       "nv" = "nvim";
