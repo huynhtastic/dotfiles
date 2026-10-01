@@ -46,10 +46,8 @@
     ];
     casks = [
       "automic-vault"
-      "battery"
       "gcloud-cli"
       "ghostty"
-      "hiddenbar"
       "linearmouse"
       "raycast"
     ];
