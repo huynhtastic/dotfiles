@@ -47,6 +47,7 @@ in
       # For Android Development
       export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
       export PATH="$PATH:/Users/richardhuynh/Library/Android/sdk/platform-tools"
+      export PATH="$PATH:/Applications/Android Studio.app/Contents/plugins/Kotlin/kotlinc/bin"
 
       # Flutter
       PATH=$PATH:/Users/richardhuynh/dev/flutter/bin
